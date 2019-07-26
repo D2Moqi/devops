@@ -1,0 +1,21 @@
+stages:
+- name: 编译
+  steps:
+  - runScriptConfig:
+      image: maven
+      shellScript: mvn clean package
+- name: 构建并发布镜像
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: devops
+- name: 部署
+  steps:
+  - applyAppConfig:
+      catalogTemplate: devops
+      version: v1
+      name: devops
+      targetNamespace: default
+timeout: 60
+notification: {}
