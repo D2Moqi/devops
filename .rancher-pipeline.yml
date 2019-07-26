@@ -17,5 +17,6 @@ stages:
       version: v1
       name: devops
       targetNamespace: default
-timeout: 60
+timeout: 3
+branch: {}
 notification: {}
